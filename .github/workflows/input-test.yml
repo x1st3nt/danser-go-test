@@ -1,0 +1,28 @@
+name: test main.go if working
+
+on:
+  push:
+    branches:
+      - main  # Change this to your target branch if needed
+  pull_request:
+    branches:
+      - main  # Change this to your target branch if needed
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Choose the appropriate OS
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: '1.20'  # Specify the Go version you want to use
+
+    - name: Build main.go
+      run: go build main.go  # Builds only main.go
+
+    - name: Run the application (optional)
+      run: ./main  # Run the application if you need to test it
